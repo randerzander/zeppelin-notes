@@ -1,0 +1,233 @@
+{
+  "paragraphs": [
+    {
+      "text": "%pyspark\ncrimes_file \u003d sc.textFile(\u0027file:///root/crimes.csv\u0027)\nheader \u003d crimes_file.filter(lambda x: \u0027MI_PRINX\u0027 in x).map(lambda x: [x.strip().replace(\u0027 \u0027, \u0027_\u0027) for x in x.split(\u0027,\u0027)])\ncrimes \u003d crimes_file.filter(lambda x: \u0027MI_PRINX\u0027 not in x) \\\n .map(lambda x: [x.strip() for x in x.split(\u0027,\u0027)])\n\nsqlContext.registerDataFrameAsTable(sqlContext.createDataFrame(crimes, header.collect()[0]), \u0027crimes\u0027)",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1437260296743_278862841",
+      "id": "20150718-185816_407414995",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": ""
+      },
+      "dateCreated": "Jul 18, 2015 6:58:16 PM",
+      "dateStarted": "Jul 19, 2015 2:22:16 PM",
+      "dateFinished": "Jul 19, 2015 2:22:16 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql select * from crimes where beat \u003d \u0027605\u0027 and lower(location) like \u0027%berne%\u0027",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "﻿MI_PRINX",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "offense_id",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "﻿MI_PRINX",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "offense_id",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1437263283215_779091130",
+      "id": "20150718-194803_1177720424",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "﻿MI_PRINX\toffense_id\trpt_date\toccur_date\toccur_time\tposs_date\tposs_time\tbeat\tapt_office_prefix\tapt_office_num\tlocation\tMinOfucr\tMinOfibr_code\tdispo_code\tMaxOfnum_victims\tShift\tAvg_Day\tloc_type\tUC2_Literal\tneighborhood\tnpu\tx\ty\n13046805\t090021442\t01/02/2009\t12/18/2008\t07:00:00\t01/02/2009\t19:30:00\t605\tNULL\tNULL\t744 BERNE ST SE\t0511\tNULL\tNULL\t2\tUnk\tUnk\t20\tBURGLARY\tGrant Park\tW\t-84.36302\t33.7368\n13047679\t090091830\t01/09/2009\t01/09/2009\t18:30:00\t01/09/2009\t20:15:00\t605\tNULL\tNULL\tBERNE ST SE / MARION ST SE\t0720\tNULL\tNULL\t1\tEve\tFri\t13\tAUTO THEFT\tGrant Park\tW\t-84.36106\t33.73654\n13056075\t090912345\t04/01/2009\t04/01/2009\t07:30:00\t04/01/2009\t22:00:00\t605\tNULL\tNULL\t714 BERNE ST SE\t0511\tNULL\tNULL\t1\tDay\tWed\t20\tBURGLARY\tGrant Park\tW\t-84.36398\t33.73688\n13067555\t091920942\t07/11/2009\t07/11/2009\t10:00:00\t07/11/2009\t11:15:00\t605\tNULL\tNULL\t790 BERNE ST SE\t0640\tNULL\tNULL\t6\tDay\tSat\t13\tLARCENY\tGrant Park\tW\t-84.36166\t33.73663\n13070727\t092181050\t08/06/2009\t08/05/2009\t22:30:00\t08/06/2009\t12:00:00\t605\tNULL\tNULL\t568 BERNE ST SE\t0640\tNULL\tNULL\t1\tMorn\tThu\t13\tLARCENY\tGrant Park\tW\t-84.36904\t33.73737\n13071151\t092220495\t08/10/2009\t08/07/2009\t15:00:00\t08/10/2009\t03:00:00\t605\tNULL\tNULL\t815 BERNE ST SE\t0511\tNULL\tNULL\t0\tUnk\tUnk\tNULL\tBURGLARY\tGrant Park\tW\t-84.36042\t33.73644\n13080107\t093051790\t11/01/2009\t11/01/2009\t09:30:00\t11/01/2009\t23:00:00\t605\tNULL\tNULL\t801 BERNE ST SE\t0511\tNULL\tNULL\t1\tEve\tSun\t20\tBURGLARY\tGrant Park\tW\t-84.36123\t33.73631\n13082564\t093270586\t11/23/2009\t11/22/2009\t23:00:00\t11/23/2009\t09:00:00\t605\tNULL\tNULL\t714 BERNE ST SE\t0640\tNULL\tNULL\t1\tMorn\tMon\t20\tLARCENY\tGrant Park\tW\t-84.36398\t33.73688\n13086593\t093631463\t12/29/2009\t12/27/2009\t12:00:00\t12/29/2009\t17:45:00\t605\tNULL\tNULL\t793 BERNE ST SE\t0531\tNULL\t60\t1\tUnk\tUnk\t20\tBURGLARY\tGrant Park\tW\t-84.36149\t33.73633\n13087677\t100091401\t01/09/2010\t01/09/2010\t18:00:00\t01/09/2010\t19:20:00\t605\tNULL\tNULL\tBERNE ST SE / MARION ST SE\t0640\tNULL\t60\t1\tEve\tSat\t13\tLARCENY\tGrant Park\tW\t-84.36106\t33.73654\n13094975\t100961761\t04/06/2010\t04/06/2010\t08:00:00\t04/06/2010\t15:46:00\t605\tNULL\tNULL\t640 BERNE ST SE\t0511\tNULL\tNULL\t1\tDay\tTue\t20\tBURGLARY\tGrant Park\tW\t-84.36638\t33.737\n13095544\t101020704\t04/12/2010\t04/11/2010\t17:00:00\t04/12/2010\t10:00:00\t605\tNULL\tNULL\t609 BERNE ST SE\t0640\tNULL\tNULL\t1\tUnk\tMon\t13\tLARCENY\tGrant Park\tW\t-84.36733\t33.73665\n13097154\t101171533\t04/27/2010\t04/27/2010\t08:00:00\t04/27/2010\t17:20:00\t605\tNULL\tNULL\t816 BERNE ST SE\t0511\tNULL\tNULL\t1\tDay\tTue\t20\tBURGLARY\tGrant Park\tW\t-84.36073\t33.73673\n13102695\t101712702\t06/20/2010\t06/20/2010\t02:00:00\t06/20/2010\t05:00:00\t605\tNULL\tNULL\t815 BERNE ST SE\t0720\tNULL\tNULL\t1\tMorn\tSun\t13\tAUTO THEFT\tGrant Park\tW\t-84.36042\t33.73644\n13104746\t101901724\t07/09/2010\t07/08/2010\t21:00:00\t07/09/2010\t07:00:00\t605\tNULL\tNULL\t661 BERNE ST SE\t0690\tNULL\t10\t1\tMorn\tFri\t20\tLARCENY\tGrant Park\tW\t-84.36565\t33.7366\n13111189\t102500415\t09/07/2010\t09/07/2010\t00:00:00\t09/07/2010\t07:49:00\t605\tNULL\tNULL\t693 BERNE ST SE\t0710\tNULL\tNULL\t1\tMorn\tTue\t13\tAUTO THEFT\tGrant Park\tW\t-84.36434\t33.73639\n13113811\t102751066\t10/02/2010\t10/02/2010\t11:30:00\t10/02/2010\t12:30:00\t605\tNULL\tNULL\t837 BERNE ST SE\t0640\tNULL\tNULL\t1\tDay\tSat\t13\tLARCENY\tGrant Park\tW\t-84.3601\t33.73636\n13117127\t103052411\t11/01/2010\t11/01/2010\t23:00:00\t11/01/2010\t23:15:00\t605\tNULL\tNULL\t669 BERNE ST SE\t0720\tNULL\tNULL\t1\tMorn\tMon\t13\tAUTO THEFT\tGrant Park\tW\t-84.36536\t33.7366\n13119356\t103270036\t11/23/2010\t11/23/2010\t00:27:00\t11/23/2010\t12:30:00\t605\tNULL\tNULL\t801 BERNE ST SE\t0311\tNULL\tNULL\t2\tMorn\tTue\t13\tROBBERY\tGrant Park\tW\t-84.36123\t33.73631\n13121725\t103492557\t12/15/2010\t12/15/2010\t22:00:00\t12/15/2010\t22:00:00\t605\tNULL\tNULL\t673 BERNE ST SE\t0511\tNULL\tNULL\t1\tEve\tWed\t20\tBURGLARY\tGrant Park\tW\t-84.36521\t33.73659\n13123871\t110072008\t01/07/2011\t01/06/2011\t12:30:00\t01/06/2011\t12:30:00\t605\tNULL\tNULL\t837 BERNE ST SE\t0670\tNULL\tNULL\t0\tDay\tThu\tNULL\tLARCENY\tGrant Park\tW\t-84.3601\t33.73636\n13124791\t110191098\t01/19/2011\t01/19/2011\t12:33:00\t01/19/2011\t12:33:00\t605\tNULL\tNULL\t744 BERNE ST SE\t0511\tNULL\t10\t1\tDay\tWed\t20\tBURGLARY\tGrant Park\tW\t-84.36302\t33.7368\n13125479\t110270984\t01/27/2011\t01/26/2011\t19:00:00\t01/27/2011\t09:00:00\t605\tNULL\tNULL\t835 BERNE ST SE\t0650\tNULL\tNULL\t1\tMorn\tThu\t13\tLARCENY\tGrant Park\tW\t-84.36027\t33.73636\n13129983\t110850666\t03/26/2011\t03/26/2011\t07:00:00\t03/26/2011\t07:15:00\t605\tNULL\tNULL\t721 BERNE ST SE\t0430\tNULL\t10\t2\tDay\tSat\tNULL\tAGG ASSAULT\tGrant Park\tW\t-84.36367\t33.73639\n13131360\t110981911\t04/08/2011\t04/08/2011\t17:05:00\t04/08/2011\t17:11:00\t605\tNULL\tNULL\t634 BERNE ST SE\t0311\tNULL\t10\t3\tEve\tFri\t13\tROBBERY\tGrant Park\tW\t-84.36621\t33.737\n13131808\t111030700\t04/13/2011\t04/13/2011\t00:01:00\t04/13/2011\t08:00:00\t605\tNULL\tNULL\t717 BERNE ST SE\t0720\tNULL\tNULL\t1\tMorn\tWed\t20\tAUTO THEFT\tGrant Park\tW\t-84.36383\t33.73639\n13134692\t111302107\t05/10/2011\t05/10/2011\t19:30:00\t05/10/2011\t19:40:00\t605\tNULL\tNULL\t790 BERNE ST SE\t0640\tNULL\tNULL\t1\tEve\tTue\tNULL\tLARCENY\tGrant Park\tW\t-84.36166\t33.73663\n13135920\t111421741\t05/22/2011\t05/22/2011\t14:00:00\t05/22/2011\t18:00:00\t605\tNULL\tNULL\t801 BERNE ST SE\t0640\tNULL\tNULL\t1\tEve\tSun\t13\tLARCENY\tGrant Park\tW\t-84.36123\t33.73631\n13136282\t111452544\t05/25/2011\t05/24/2011\t14:00:00\t05/25/2011\t22:00:00\t605\tNULL\tNULL\t801 BERNE ST SE\t0511\tNULL\tNULL\t3\tUnk\tWed\t20\tBURGLARY\tGrant Park\tW\t-84.36123\t33.73631\n13141519\t111950580\t07/14/2011\t07/14/2011\t00:30:00\t07/14/2011\t07:11:00\t605\tNULL\tNULL\t689 BERNE ST SE\t0720\tNULL\tNULL\t1\tMorn\tThu\tNULL\tAUTO THEFT\tGrant Park\tW\t-84.3647\t33.73646\n13141969\t111991069\t07/18/2011\t07/16/2011\t09:15:00\t07/18/2011\t12:00:00\t605\tNULL\tNULL\t790 BERNE ST SE\t0690\tNULL\tNULL\t1\tUnk\tUnk\t99\tLARCENY\tGrant Park\tW\t-84.36166\t33.73663\n13142725\t112060714\t07/25/2011\t07/23/2011\t15:15:00\t07/25/2011\t10:30:00\t605\tNULL\tNULL\t790 BERNE STREET SE\t0690\tNULL\tNULL\t1\tUnk\tUnk\t99\tLARCENY\tGrant Park\tW\t-84.36166\t33.73663\n13148053\t112551450\t09/12/2011\t09/12/2011\t07:00:00\t09/12/2011\t14:30:00\t605\tNULL\tNULL\t790 BERNE ST SE\t0640\tNULL\tNULL\t1\tDay\tMon\t13\tLARCENY\tGrant Park\tW\t-84.36166\t33.73663\n13152183\t112961321\t10/23/2011\t10/23/2011\t17:45:00\t10/23/2011\t18:45:00\t605\tNULL\tNULL\t790 BERNE ST SE\t0640\tNULL\tNULL\t3\tEve\tSun\t18\tLARCENY\tGrant Park\tW\t-84.36166\t33.73663\n13152247\t112970938\t10/24/2011\t10/24/2011\t11:50:00\t10/24/2011\t12:01:00\t605\tNULL\tNULL\t837 BERNE ST SE\t0511\tNULL\t60\t1\tDay\tMon\t20\tBURGLARY\tGrant Park\tW\t-84.3601\t33.73636\n13153166\t113060880\t11/02/2011\t11/01/2011\t00:01:00\t11/01/2011\t06:00:00\t605\tNULL\tNULL\t620 BERNE ST SE\t0640\tNULL\tNULL\t1\tMorn\tTue\t20\tLARCENY\tGrant Park\tW\t-84.367\t33.73701\n13153267\t113071142\t11/03/2011\t11/03/2011\t12:45:00\t11/03/2011\t12:50:00\t605\tNULL\tNULL\t787 BERNE ST SE\t0531\tNULL\tNULL\t1\tDay\tThu\t20\tBURGLARY\tGrant Park\tW\t-84.36172\t33.73631\n13154539\t113200598\t11/16/2011\t11/15/2011\t20:00:00\t11/16/2011\t08:00:00\t605\tNULL\tNULL\t685 BERNE ST SE\t0720\tNULL\tNULL\t1\tMorn\tWed\tNULL\tAUTO THEFT\tGrant Park\tW\t-84.36463\t33.73659\n13159271\t120042064\t01/04/2012\t01/04/2012\t18:50:00\t01/04/2012\t19:10:00\t605\tNULL\tNULL\t790 BERNE ST SE\t0640\tNULL\tNULL\t2\tEve\tWed\t18\tLARCENY\tGrant Park\tW\t-84.36166\t33.73663\n13168501\t121151306\t04/24/2012\t04/23/2012\t21:00:00\t04/24/2012\t13:00:00\t605\tNULL\tNULL\t790 BERNE ST SE\t0650\tNULL\tNULL\t1\tUnk\tTue\t11\tLARCENY\tGrant Park\tW\t-84.36139\t33.7371\n13171461\t121461055\t05/25/2012\t05/24/2012\t22:00:00\t05/25/2012\t07:30:00\t605\tNULL\tNULL\t644 BERNE ST SE\t0650\tNULL\tNULL\t1\tMorn\tFri\t13\tLARCENY\tGrant Park\tW\t-84.36621\t33.737\n13174026\t121710682\t06/19/2012\t06/18/2012\t17:45:00\t06/18/2012\t18:00:00\t605\tNULL\tNULL\t790 BERNE ST SE\t0640\tNULL\tNULL\t1\tEve\tMon\t18\tLARCENY\tGrant Park\tW\t-84.36139\t33.7371\n13184884\t122801383\t10/06/2012\t10/03/2012\t23:00:00\t10/06/2012\t14:00:00\t605\tNULL\tNULL\t644 BERNE ST SE\t0640\tNULL\tNULL\t2\tUnk\tUnk\t13\tLARCENY\tGrant Park\tW\t-84.36621\t33.737\n13187130\t123040773\t10/30/2012\t10/29/2012\t20:30:00\t10/30/2012\t00:30:00\t605\tNULL\tNULL\t640 BERNE ST SE\t0650\tNULL\tNULL\t1\tEve\tMon\t13\tLARCENY\tGrant Park\tW\t-84.36638\t33.737\n13189747\t123321770\t11/27/2012\t11/26/2012\t16:00:00\t11/27/2012\t15:00:00\t605\tNULL\tNULL\t720 BERNE ST SE\t0650\tNULL\tNULL\t1\tUnk\tTue\t18\tLARCENY\tGrant Park\tW\t-84.36372\t33.73665\n13195482\t130282401\t01/28/2013\t01/28/2013\t17:15:00\t01/28/2013\t20:30:00\t605\tNULL\tNULL\t732 BERNE ST SE\t0511\tNULL\tNULL\t1\tEve\tMon\t20\tBURGLARY\tGrant Park\tW\t-84.36346\t33.73679\n13196399\t130391418\t02/08/2013\t01/10/2013\t00:01:00\t01/13/2013\t16:00:00\t605\tNULL\tNULL\t787 BERNE ST SE\t0511\tNULL\tNULL\t1\tUnk\tUnk\t20\tBURGLARY\tGrant Park\tW\t-84.36172\t33.73631\n13207163\t131622776\t06/11/2013\t06/11/2013\t18:30:00\t06/11/2013\t20:45:00\t605\tNULL\tNULL\t837 BERNE STREET\t0511\tNULL\tNULL\t1\tEve\tTue\t20\tBURGLARY\tGrant Park\tW\t-84.3601\t33.73636\n13212425\t132151432\t08/03/2013\t08/03/2013\t12:15:00\t08/03/2013\t14:50:00\t605\tNULL\tNULL\t568 BERNE ST SE\t0640\tNULL\tNULL\t1\tDay\tSat\t13\tLARCENY\tGrant Park\tW\t-84.36904\t33.73737\n13213808\t132300963\t08/18/2013\t08/18/2013\t11:15:00\t08/18/2013\t11:50:00\t605\tNULL\tNULL\t649 BERNE ST SE\t0650\tNULL\tNULL\t1\tDay\tSun\t13\tLARCENY\tGrant Park\tW\t-84.36595\t33.73662\n13217120\t132650986\t09/22/2013\t09/20/2013\t22:30:00\t09/21/2013\t08:30:00\t605\tNULL\tNULL\t649 BERNE ST SE\t0650\tNULL\tNULL\t1\tMorn\tSat\t13\tLARCENY\tGrant Park\tW\t-84.36595\t33.73662\n13219187\t132880942\t10/15/2013\t10/15/2013\t09:00:00\t10/15/2013\t10:15:00\t605\tNULL\tNULL\t790 BERNE ST SE\t0640\tNULL\tNULL\t1\tDay\tTue\t18\tLARCENY\tGrant Park\tW\t-84.36106\t33.73654\n13223417\t133390611\t12/05/2013\t12/04/2013\t18:00:00\t12/04/2013\t21:30:00\t605\tNULL\tNULL\t693 BERNE ST SE\t0710\tNULL\tNULL\t1\tEve\tWed\t20\tAUTO THEFT\tGrant Park\tW\t-84.36434\t33.73639\n13223508\t133401041\t12/06/2013\t12/05/2013\t12:00:00\t12/06/2013\t09:00:00\t605\tNULL\tNULL\t685 BERNE ST SE\t0640\tNULL\tNULL\t1\tUnk\tThu\t18\tLARCENY\tGrant Park\tW\t-84.36463\t33.73659\n13224021\t133460969\t12/12/2013\t12/10/2013\t16:30:00\t12/11/2013\t09:00:00\t605\tNULL\tNULL\t560 BERNE ST SE\t0640\tNULL\tNULL\t1\tUnk\tWed\t13\tLARCENY\tGrant Park\tW\t-84.3693\t33.73731\n13224076\t133462514\t12/12/2013\t12/12/2013\t18:30:00\t12/12/2013\t18:50:00\t605\tNULL\tNULL\t801 BERNE ST SE\t0640\tNULL\tNULL\t1\tEve\tThu\t13\tLARCENY\tGrant Park\tW\t-84.36123\t33.73631\n13228555\t140362476\t02/05/2014\t02/05/2014\t18:30:00\t02/05/2014\t19:15:00\t605\tNULL\tNULL\t790 BERNE ST SE\t0640\tNULL\tNULL\t1\tEve\tWed\t18\tLARCENY\tGrant Park\tW\t-84.36139\t33.7371\n13228969\t140412379\t02/10/2014\t02/10/2014\t19:30:00\t02/10/2014\t20:42:00\t605\tNULL\tNULL\t790 BERNE ST SE\t0640\tNULL\tNULL\t1\tEve\tMon\t\tLARCENY\tGrant Park\tW\t-84.36139\t33.7371\n13230407\t140632200\t03/04/2014\t03/04/2014\t18:00:00\t03/04/2014\t18:50:00\t605\tNULL\tNULL\t790 BERNE ST SE\t0640\tNULL\tNULL\t1\tEve\tTue\t13\tLARCENY\tGrant Park\tW\t-84.36139\t33.7371\n13233507\t141031318\t04/13/2014\t04/12/2014\t20:00:00\t04/13/2014\t12:00:00\t605\tNULL\tNULL\t812 BERNE ST SE\t0710\tNULL\tNULL\t1\tUnk\tSun\t\tAUTO THEFT\tGrant Park\tW\t-84.36089\t33.73674\n13241853\t141962539\t07/15/2014\t07/15/2014\t00:00:00\t07/15/2014\t05:00:00\t605\tNULL\tNULL\t743 BERNE ST SE\t0710\tNULL\tNULL\t1\tMorn\tTue\t20\tAUTO THEFT\tGrant Park\tW\t-84.36301\t33.73636\n13242094\t141990851\t07/18/2014\t07/18/2014\t00:50:00\t07/18/2014\t08:30:00\t605\tNULL\tNULL\t693 BERNE ST SE\t0640\tNULL\tNULL\t1\tMorn\tFri\t20\tLARCENY\tGrant Park\tW\t-84.36434\t33.73639\n13247770\t142620878\t09/19/2014\t09/18/2014\t22:00:00\t09/19/2014\t08:00:00\t605\tNULL\tNULL\t644 BERNE ST SE\t0640\tNULL\tNULL\t1\tMorn\tFri\t13\tLARCENY\tGrant Park\tW\t-84.36621\t33.737\n13253866\t143280803\t11/24/2014\t11/23/2014\t20:00:00\t11/24/2014\t08:00:00\t605\tNULL\tNULL\t634 BERNE ST SE\t0710\tNULL\tNULL\t1\tMorn\tMon\t13\tAUTO THEFT\tGrant Park\tW\t-84.36654\t33.73697\n13254707\t143371038\t12/03/2014\t11/29/2014\t00:00:00\t12/01/2014\t09:00:00\t605\tNULL\tNULL\t634 BERNE ST SE\t0650\tNULL\tNULL\t1\tUnk\tUnk\t13\tLARCENY\tGrant Park\tW\t-84.36654\t33.73697\n13256215\t143521110\t12/18/2014\t12/17/2014\t08:00:00\t12/18/2014\t10:00:00\t605\tNULL\tNULL\t574 BERNE ST SE\t0640\tNULL\tNULL\t1\tUnk\tWed\t20\tLARCENY\tGrant Park\tW\t-84.36886\t33.73735\n13258442\t150121986\t01/12/2015\t01/09/2015\t16:00:00\t01/09/2015\t17:00:00\t605\tNULL\tNULL\t790 BERNE ST SE\t0690\tNULL\tNULL\t1\tEve\tFri\t11\tLARCENY\tGrant Park\tW\t-84.36139\t33.7371\n13260853\t150413208\t02/11/2015\t12/22/2014\t08:00:00\t12/22/2014\t15:00:00\t605\tNULL\tNULL\t790 BERNE ST SE\t0210\tNULL\t20\t1\tDay\tMon\t99\tRAPE\tGrant Park\tW\t-84.36139\t33.7371\n13265980\t151110728\t04/21/2015\t04/20/2015\t21:00:00\t04/21/2015\t07:30:00\t605\tNULL\tNULL\t705 BERNE ST SE\t0640\tNULL\tNULL\t1\tMorn\tTue\t13\tLARCENY\tGrant Park\tW\t-84.36416\t33.73636\n13272560\t151840806\t07/03/2015\t07/02/2015\t22:00:00\t07/03/2015\t07:25:00\t605\tNULL\tNULL\t743 BERNE ST SE\t0710\tNULL\tNULL\t1\tMorn\tFri\t20\tAUTO THEFT\tGrant Park\tW\t-84.36301\t33.73636\n"
+      },
+      "dateCreated": "Jul 18, 2015 7:48:03 PM",
+      "dateStarted": "Jul 19, 2015 2:22:20 PM",
+      "dateFinished": "Jul 19, 2015 2:22:25 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql \nselect\n neighborhood,\n regexp_extract(trim(split(rpt_date, \"\\/\")[0]), \"0*([1-9][0-9]*|0)\", 1) as month,\n count(*) as count\nfrom crimes\ngroup by neighborhood, regexp_extract(trim(split(rpt_date, \"\\/\")[0]), \"0*([1-9][0-9]*|0)\", 1)",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "neighborhood",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "type",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "neighborhood",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "type",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1437283266650_-856864998",
+      "id": "20150719-012106_1108150902",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "neighborhood\tmonth\tcount\nEast Chastain Park\t9\t33\nArgonne Forest\t11\t2\nVirginia Highland\t10\t205\nCross Creek\t5\t39\nKingswood\t4\t9\nGrant Park\t9\t273\nDowntown\t12\t1161\nBrowns Mill Park\t8\t107\nNorwood Manor\t11\t33\nAdamsville\t10\t124\nBen Hill Acres\t3\t9\nHome Park\t2\t161\nHorseshoe Community\t4\t3\nFairburn\t10\t19\nArgonne Forest\t12\t4\nVirginia Highland\t11\t210\nCross Creek\t6\t18\nKingswood\t5\t8\nRegency Trace\t11\t4\nCarroll Heights\t1\t43\nBrowns Mill Park\t9\t115\nNorwood Manor\t12\t29\nAdamsville\t11\t141\nBen Hill Acres\t4\t12\nHome Park\t3\t180\nDeerwood\t10\t10\nHorseshoe Community\t5\t1\nFairburn\t11\t11\nWesley Battle\t11\t2\nRegency Trace\t12\t3\nCarroll Heights\t2\t35\nKingswood\t6\t6\nHome Park\t4\t247\nVirginia Highland\t12\t215\nCross Creek\t7\t24\nAdamsville\t12\t165\nBen Hill Acres\t5\t9\nHills Park\t1\t30\nDeerwood\t11\t14\nWesley Battle\t12\t2\nSouth River Gardens\t1\t162\nFairburn\t12\t17\nKingswood\t7\t3\nCross Creek\t8\t31\nInman Park\t10\t204\nCarroll Heights\t3\t40\nAlmond Park\t10\t45\nMellwood\t1\t6\nHome Park\t5\t246\nBen Hill Acres\t6\t12\nHills Park\t2\t31\nDeerwood\t12\t23\nHorseshoe Community\t7\t1\nWest Highlands\t10\t22\nSouth River Gardens\t2\t102\nCross Creek\t9\t14\nKingswood\t8\t5\nThe Villages at Carver\t10\t71\nMellwood\t2\t2\nWhitewater Creek\t1\t5\nRidgewood Heights\t10\t2\nEdgewood\t10\t267\nAlmond Park\t11\t51\nCarroll Heights\t4\t46\nInman Park\t11\t214\nHorseshoe Community\t8\t4\nWest Highlands\t11\t29\nHills Park\t3\t24\nBen Hill Acres\t7\t16\nHome Park\t6\t240\nLindridge/Martin Manor\t10\t126\nSouth River Gardens\t3\t145\nDixie Hills\t1\t88\nKingswood\t9\t2\nThe Villages at Carver\t11\t98\nWhitewater Creek\t2\t2\nMellwood\t3\t1\nEdgewood\t11\t244\nRidgewood Heights\t11\t13\nCarroll Heights\t5\t41\nAlmond Park\t12\t58\nInman Park\t12\t196\nRidgecrest Forest\t1\t6\nWest Highlands\t12\t32\nHorseshoe Community\t9\t1\nHills Park\t4\t29\nWildwood (NPU-C)\t1\t35\nBen Hill Acres\t8\t14\nHome Park\t7\t228\nLindridge/Martin Manor\t11\t98\nSouth River Gardens\t4\t139\nDixie Hills\t2\t79\nRidgewood Heights\t12\t4\nEdgewood\t12\t249\nThe Villages at Carver\t12\t83\nMellwood\t4\t2\nCarroll Heights\t6\t34\nHills Park\t5\t53\nWildwood (NPU-C)\t2\t26\nRidgecrest Forest\t2\t2\nHome Park\t8\t222\nBen Hill Acres\t9\t11\nWhitewater Creek\t4\t4\nLindridge/Martin Manor\t12\t120\nMellwood\t5\t1\nSouth River Gardens\t5\t186\nCarroll Heights\t7\t49\nDixie Hills\t3\t104\nHills Park\t6\t35\nWildwood (NPU-C)\t3\t37\nRidgecrest Forest\t3\t6\nHome Park\t9\t228\nRidgecrest Forest\t4\t10\nDixie Hills\t4\t103\nHills Park\t7\t38\nWildwood (NPU-C)\t4\t36\nCarroll Heights\t8\t43\nSouth River Gardens\t6\t153\nMellwood\t6\t1\nWhitewater Creek\t5\t3\nSweet Auburn\t1\t162\nRidgecrest Forest\t5\t11\nDixie Hills\t5\t99\nHills Park\t8\t31\nWildwood (NPU-C)\t5\t31\nCarroll Heights\t9\t36\nSouth River Gardens\t7\t157\nMellwood\t7\t2\nWhitewater Creek\t6\t6\nMozley Park\t10\t54\nLindbergh/Morosgo\t10\t202\nOld Fairburn Village\t1\t1\nDixie Hills\t6\t104\nHills Park\t9\t21\nWildwood (NPU-C)\t6\t38\nRidgecrest Forest\t6\t4\nSweet Auburn\t2\t126\nSouth River Gardens\t8\t130\nMellwood\t8\t2\nLindbergh/Morosgo\t11\t178\nMozley Park\t11\t68\nOld Fairburn Village\t2\t1\nDixie Hills\t7\t118\nWildwood (NPU-C)\t7\t31\nSweet Auburn\t3\t145\nRidgecrest Forest\t7\t1\nSouth River Gardens\t9\t129\nBen Hill Forest\t1\t4\nMellwood\t9\t4\nWhitewater Creek\t8\t3\nRidgecrest Forest\t8\t12\nSweet Auburn\t4\t155\nFort McPherson\t10\t2\nDixie Hills\t8\t89\nWildwood (NPU-C)\t8\t31\nChalet Woods\t2\t9\nMozley Park\t12\t70\nLindbergh/Morosgo\t12\t185\nWhitewater Creek\t9\t3\nBen Hill Forest\t2\t3\nSweet Auburn\t5\t240\nFort McPherson\t11\t1\nRidgecrest Forest\t9\t6\nDixie Hills\t9\t93\nWildwood (NPU-C)\t9\t17\nChalet Woods\t3\t3\nNULL\t10\t731\nBen Hill Forest\t3\t1\nGreenbriar\t1\t315\nButner/Tell\t10\t3\nWest Manor\t10\t15\nSweet Auburn\t6\t178\nOld Fairburn Village\t5\t1\nChalet Woods\t4\t3\nBakers Ferry\t1\t8\nPrinceton Lakes\t10\t140\nGreenbriar\t2\t279\nBen Hill Forest\t4\t2\nNULL\t11\t768\nWest Manor\t11\t11\nSweet Auburn\t7\t171\nButner/Tell\t11\t4\nChalet Woods\t5\t6\nFairburn Mays\t1\t129\nGreenbriar\t3\t298\nPrinceton Lakes\t11\t146\nBen Hill Forest\t5\t1\nColonial Homes\t10\t13\nThe Villages at Castleberry H\t1\t80\nOld Fairburn Village\t6\t1\nBakers Ferry\t2\t3\nBerkeley Park\t10\t214\nNULL\t12\t771\nGreenbriar\t4\t333\nGreen Acres Valley\t10\t2\nButner/Tell\t12\t4\nSweet Auburn\t8\t173\nColonial Homes\t11\t10\nBen Hill Forest\t6\t2\nWest Lake\t1\t57\nPrinceton Lakes\t12\t156\nFairburn Mays\t2\t86\nBerkeley Park\t11\t238\nBakers Ferry\t3\t7\nBolton Hills\t10\t10\nChalet Woods\t6\t5\nThe Villages at Castleberry H\t2\t62\nSouth Atlanta\t10\t121\nWest Manor\t12\t14\nGreenbriar\t5\t340\nGreen Acres Valley\t11\t4\nOld Fairburn Village\t8\t1\nSweet Auburn\t9\t141\nColonial Homes\t12\t8\nBen Hill Forest\t7\t5\nFairburn Mays\t3\t82\nWest Lake\t2\t51\nCastleberry Hill\t1\t188\nBakers Ferry\t4\t2\nBerkeley Park\t12\t252\nChalet Woods\t7\t2\nBolton Hills\t11\t14\nSouth Atlanta\t11\t81\nThe Villages at Castleberry H\t3\t78\nGreenbriar\t6\t333\nAtlanta University Center\t10\t118\nEast Ardley Road\t10\t6\nOld Fairburn Village\t9\t1\nGreen Acres Valley\t12\t2\nWest Lake\t3\t39\nFairburn Mays\t4\t107\nBen Hill Forest\t8\t1\nPoncey-Highland\t1\t141\nCastleberry Hill\t2\t149\nBakers Ferry\t5\t6\nThe Villages at Castleberry H\t4\t81\nSouth Atlanta\t12\t89\nBolton Hills\t12\t11\nChalet Woods\t8\t8\nGreenbriar\t7\t335\nPenelope Neighbors\t10\t18\nAtlanta University Center\t11\t138\nEast Ardley Road\t11\t1\nUnderwood Hills\t1\t104\nCascade Green\t10\t9\nWesthaven\t1\t15\nFairburn Mays\t5\t92\nWest Lake\t4\t60\nBen Hill Forest\t9\t3\nPoncey-Highland\t2\t112\nCastleberry Hill\t3\t165\nBakers Ferry\t6\t4\nThe Villages at Castleberry H\t5\t75\nChalet Woods\t9\t3\nCarey Park\t10\t95\nPenelope Neighbors\t11\t8\nGreenbriar\t8\t282\nCascade Green\t11\t6\nCollier Hills\t1\t3\nUnderwood Hills\t2\t80\nBlair Villa/Poole Creek\t10\t37\nAtlanta University Center\t12\t116\nEast Ardley Road\t12\t2\nCastleberry Hill\t4\t158\nBakers Ferry\t7\t3\nPoncey-Highland\t3\t142\nWest Lake\t5\t55\nWesthaven\t2\t14\nFairburn Mays\t6\t125\nThe Villages at Castleberry H\t6\t72\nPenelope Neighbors\t12\t18\nCarey Park\t11\t65\nGreenbriar\t9\t294\nCascade Green\t12\t6\nUnderwood Hills\t3\t73\nCollier Hills\t2\t3\nBlair Villa/Poole Creek\t11\t36\nCastleberry Hill\t5\t198\nBakers Ferry\t8\t7\nPoncey-Highland\t4\t131\nWesthaven\t3\t29\nFairburn Mays\t7\t111\nWest Lake\t6\t53\nElmco Estates\t1\t12\nThe Villages at Castleberry H\t7\t75\nCarey Park\t12\t77\nPeoplestown\t10\t149\nBlair Villa/Poole Creek\t12\t37\nCollier Hills\t3\t15\nUnderwood Hills\t4\t80\nPoncey-Highland\t5\t162\nCastleberry Hill\t6\t180\nBakers Ferry\t9\t8\nAtlantic Station\t1\t141\nWest Lake\t7\t46\nWesthaven\t4\t16\nFairburn Mays\t8\t112\nElmco Estates\t2\t6\nThe Villages at Castleberry H\t8\t59\nPeoplestown\t11\t133\nHarvel Homes Community\t10\t4\nUnderwood Hills\t5\t96\nCollier Hills\t4\t13\nPoncey-Highland\t6\t148\nCastleberry Hill\t7\t174\nAtlantic Station\t2\t133\nWesthaven\t5\t19\nFairburn Mays\t9\t85\nWest Lake\t8\t51\nGlenrose Heights\t10\t189\nArlington Estates\t1\t14\nElmco Estates\t3\t7\nRiverside\t1\t42\nChosewood Park\t1\t80\nThe Villages at Castleberry H\t9\t69\nCollier Hills\t5\t15\nHarvel Homes Community\t11\t3\nGlenrose Heights\t11\t190\nWest Lake\t9\t39\nWesthaven\t6\t30\nPeoplestown\t12\t170\nAtlantic Station\t3\t168\nUnderwood Hills\t6\t117\nRiverside\t2\t35\nChosewood Park\t2\t55\nElmco Estates\t4\t13\nArlington Estates\t2\t13\nCastleberry Hill\t8\t159\nPoncey-Highland\t7\t151\nCollier Hills\t6\t19\nHarvel Homes Community\t12\t2\nGlenrose Heights\t12\t198\nAudobon Forest\t1\t12\nWesthaven\t7\t24\nAtlantic Station\t4\t168\nUnderwood Hills\t7\t99\nElmco Estates\t5\t8\nRiverside\t3\t56\nChosewood Park\t3\t74\nArlington Estates\t3\t16\nCastleberry Hill\t9\t181\nPleasant Hill\t1\t4\nPoncey-Highland\t8\t146\nThomasville Heights\t1\t139\nCollier Hills\t7\t11\nUnderwood Hills\t8\t90\nArlington Estates\t4\t13\nRiverside\t4\t53\nChosewood Park\t4\t78\nElmco Estates\t6\t21\nWesthaven\t8\t17\nAudobon Forest\t2\t5\nPoncey-Highland\t9\t117\nPleasant Hill\t2\t1\nAtlantic Station\t5\t179\nCollier Hills\t8\t15\nWyngate\t1\t8\nWesthaven\t9\t15\nAudobon Forest\t3\t4\nMeadowbrook Forest\t10\t7\nAtlantic Station\t6\t183\nIvan Hill\t1\t2\nThomasville Heights\t2\t107\nUnderwood Hills\t9\t85\nArlington Estates\t5\t21\nElmco Estates\t7\t13\nRiverside\t5\t57\nChosewood Park\t5\t96\nMargaret Mitchell\t10\t9\nWyngate\t2\t3\nSouthwest\t10\t179\nCollier Hills\t9\t7\nMeadowbrook Forest\t11\t4\nAtlantic Station\t7\t168\nAudobon Forest\t4\t11\nWoodland Hills\t1\t23\nRiverside\t6\t47\nChosewood Park\t6\t75\nElmco Estates\t8\t9\nArlington Estates\t6\t19\nThomasville Heights\t3\t116\nIvan Hill\t2\t2\nPleasant Hill\t4\t1\nMargaret Mitchell\t11\t7\nOakland\t10\t17\nWyngate\t3\t7\nSouthwest\t11\t168\nMeadowbrook Forest\t12\t3\nAtlantic Station\t8\t131\nLaurens Valley\t10\t6\nWoodland Hills\t2\t13\nAudobon Forest\t5\t11\nElmco Estates\t9\t9\nRiverside\t7\t56\nChosewood Park\t7\t83\nArlington Estates\t7\t22\nIvan Hill\t3\t4\nThomasville Heights\t4\t130\nFairway Acres\t1\t7\nPleasant Hill\t5\t6\nMargaret Mitchell\t12\t5\nOakland\t11\t19\nWyngate\t4\t12\nSouthwest\t12\t201\nLaurens Valley\t11\t6\nAtlantic Station\t9\t142\nCollier Heights\t1\t214\nAudobon Forest\t6\t25\nWoodland Hills\t3\t27\nArlington Estates\t8\t30\nRiverside\t8\t44\nChosewood Park\t8\t87\nThomasville Heights\t5\t155\nIvan Hill\t4\t5\nFairway Acres\t2\t7\nPleasant Hill\t6\t3\nOakland\t12\t14\nWyngate\t5\t8\nLaurens Valley\t12\t5\nCollier Heights\t2\t129\nWoodland Hills\t4\t26\nAudobon Forest\t7\t8\nArlington Estates\t9\t20\nRiverside\t9\t52\nChosewood Park\t9\t66\nIvan Hill\t5\t2\nThomasville Heights\t6\t130\nFairway Acres\t3\t11\nPleasant Hill\t7\t2\nBaker Hills\t10\t28\nWoodland Hills\t5\t29\nEnglish Avenue\t1\t263\nCollier Heights\t3\t162\nBaker Hills\t11\t12\nPittsburgh\t1\t337\nWest Paces Ferry/Northside\t10\t23\nThomasville Heights\t7\t144\nIvan Hill\t6\t3\nAdams Park\t1\t93\nBen Hill\t10\t38\nAudobon Forest\t8\t6\nFairway Acres\t4\t7\nPleasant Hill\t8\t1\nChattahoochee\t10\t1\nWyngate\t6\t5\nWoodland Hills\t6\t30\nAdair Park\t1\t110\nBaker Hills\t12\t19\nEnglish Avenue\t2\t189\nCollier Heights\t4\t171\nPittsburgh\t2\t234\nWest Paces Ferry/Northside\t11\t19\nIvan Hill\t7\t2\nThomasville Heights\t8\t126\nAdams Park\t2\t62\nBen Hill\t11\t31\nAudobon Forest\t9\t8\nFairway Acres\t5\t12\nPleasant Hill\t9\t6\nWyngate\t7\t4\nAmal Heights\t1\t35\nEnglish Avenue\t3\t210\nCollier Heights\t5\t220\nAdair Park\t2\t80\nWoodland Hills\t7\t34\nGeorgia Tech\t10\t6\nPittsburgh\t3\t350\nThomasville Heights\t9\t141\nIvan Hill\t8\t4\nWest Paces Ferry/Northside\t12\t25\nAdams Park\t3\t76\nCapitol View Manor\t10\t19\nBen Hill\t12\t46\nFairway Acres\t6\t6\nChattahoochee\t12\t3\nAmal Heights\t2\t11\nWyngate\t8\t7\nEnglish Avenue\t4\t215\nCollier Heights\t6\t201\nWoodland Hills\t8\t29\nAdair Park\t3\t95\nPittsburgh\t4\t357\nThe Villages at East Lake\t10\t32\nGeorgia Tech\t11\t3\nIvan Hill\t9\t3\nAdams Park\t4\t91\nCapitol View Manor\t11\t26\nFairway Acres\t7\t13\nAmal Heights\t3\t8\nWyngate\t9\t10\nGeorgia Tech\t12\t5\nPittsburgh\t5\t314\nThe Villages at East Lake\t11\t52\nAdair Park\t4\t117\nWoodland Hills\t9\t28\nEnglish Avenue\t5\t301\nCollier Heights\t7\t211\nAdams Park\t5\t104\nAudobon Forest West\t1\t6\nFairway Acres\t8\t16\nCapitol View Manor\t12\t17\nAmal Heights\t4\t27\nRebel Valley Forest\t10\t12\nHigh Point\t10\t5\nPittsburgh\t6\t331\nThe Villages at East Lake\t12\t47\nVine City\t10\t265\nAdair Park\t5\t137\nEnglish Avenue\t6\t285\nCollier Heights\t8\t190\nAdams Park\t6\t102\nChastain Park\t10\t46\nPeachtree Hills\t10\t36\nAudobon Forest West\t2\t9\nFairway Acres\t9\t4\nAmal Heights\t5\t28\nRebel Valley Forest\t11\t15\nHigh Point\t11\t15\nVine City\t11\t267\nCapitol Gateway\t10\t33\nPittsburgh\t7\t282\nEnglish Avenue\t7\t288\nCollier Heights\t9\t180\nAdair Park\t6\t109\nPeachtree Hills\t11\t22\nChastain Park\t11\t29\nAdams Park\t7\t80\nAudobon Forest West\t3\t6\nSpringlake\t1\t11\nAmal Heights\t6\t34\nScotts Crossing\t10\t54\nRebel Valley Forest\t12\t14\nHigh Point\t12\t14\nVine City\t12\t271\nRosedale Heights\t10\t44\nPittsburgh\t8\t283\nCapitol Gateway\t11\t49\nEnglish Avenue\t8\t253\nAdair Park\t7\t111\nChastain Park\t12\t29\nPeachtree Hills\t12\t33\nAdams Park\t8\t81\nAudobon Forest West\t4\t2\nSpringlake\t2\t7\nAmal Heights\t7\t25\nScotts Crossing\t11\t55\nScotts Crossing\t12\t50\nAdams Park\t9\t87\nMays\t1\t33\nSpringlake\t3\t8\nAdair Park\t8\t88\nEast Chastain Park\t10\t18\nRosedale Heights\t11\t48\nPittsburgh\t9\t272\nAudobon Forest West\t5\t7\nArdmore\t1\t22\nAmal Heights\t8\t21\nGrant Park\t10\t279\nEnglish Avenue\t9\t267\nCapitol Gateway\t12\t29\nArdmore\t2\t23\nAudobon Forest West\t6\t6\nAmal Heights\t9\t32\nGrant Park\t11\t288\nMays\t2\t30\nSpringlake\t4\t10\nAdair Park\t9\t96\nEast Chastain Park\t11\t22\nRosedale Heights\t12\t44\nBrowns Mill Park\t10\t115\nFairburn Road/Wisteria Lane\t1\t4\nAudobon Forest West\t7\t1\nArdmore\t3\t26\nEast Chastain Park\t12\t37\nGrant Park\t12\t225\nMays\t3\t40\nSpringlake\t5\t10\nBrowns Mill Park\t11\t85\nArdmore\t4\t32\nFairburn Road/Wisteria Lane\t2\t4\nAudobon Forest West\t8\t7\nMays\t4\t48\nSpringlake\t6\t6\nBrowns Mill Park\t12\t79\nAtlanta Industrial Park\t1\t9\nCross Creek\t10\t26\nFairburn Road/Wisteria Lane\t3\t2\nAudobon Forest West\t9\t4\nArdmore\t5\t33\nMays\t5\t31\nSpringlake\t7\t6\nHorseshoe Community\t10\t1\nAtlanta Industrial Park\t2\t7\nCross Creek\t11\t18\nArdmore\t6\t30\nKingswood\t10\t3\nFairburn Road/Wisteria Lane\t4\t4\nMays\t6\t35\nSpringlake\t8\t6\nAtlanta Industrial Park\t3\t13\nHorseshoe Community\t11\t1\nKingswood\t11\t7\nFairburn Road/Wisteria Lane\t5\t7\nArdmore\t7\t38\nBen Hill Acres\t10\t13\nCross Creek\t12\t25\nBeecher Hills\t1\t19\nMays\t7\t15\nSpringlake\t9\t3\nAtlanta Industrial Park\t4\t11\nArdmore\t8\t27\nFairburn Road/Wisteria Lane\t6\t10\nHome Park\t10\t202\nBen Hill Acres\t11\t10\nBeecher Hills\t2\t15\nMays\t8\t20\nMays\t9\t28\nBeecher Hills\t3\t13\nNiskey Lake\t1\t2\nBen Hill Acres\t12\t11\nWestwood Terrace\t1\t26\nFairburn Road/Wisteria Lane\t7\t4\nHome Park\t11\t192\nArdmore\t9\t31\nBrookwood\t1\t30\nAnsley Park\t1\t31\nAtlanta Industrial Park\t5\t5\nCarroll Heights\t10\t27\nCuster/McDonough/Guice\t1\t77\nBeecher Hills\t4\t16\nWestwood Terrace\t2\t16\nBrookwood\t2\t22\nAnsley Park\t2\t24\nFairburn Road/Wisteria Lane\t8\t8\nHome Park\t12\t201\nAtlanta Industrial Park\t6\t12\nBeecher Hills\t5\t18\nCuster/McDonough/Guice\t2\t56\nCarroll Heights\t11\t38\nNiskey Lake\t3\t3\nBrookwood\t3\t28\nAnsley Park\t3\t34\nWestwood Terrace\t3\t18\nHills Park\t10\t24\nAtlanta Industrial Park\t7\t5\nJoyland\t1\t31\nCarroll Heights\t12\t33\nNiskey Lake\t4\t5\nMellwood\t10\t2\nWestwood Terrace\t4\t21\nHills Park\t11\t31\nAtlanta Industrial Park\t8\t13\nCuster/McDonough/Guice\t3\t74\nBlandtown\t1\t85\nBeecher Hills\t6\t14\nSouth River Gardens\t10\t125\nBoulder Park\t1\t6\nBrookwood\t4\t38\nAnsley Park\t4\t42\nMellwood\t11\t6\nNiskey Lake\t5\t4\nJoyland\t2\t29\nHills Park\t12\t33\nAtlanta Industrial Park\t9\t10\nWestwood Terrace\t5\t19\nBoulder Park\t2\t2\nBeecher Hills\t7\t28\nSouth River Gardens\t11\t125\nCuster/McDonough/Guice\t4\t84\nBlandtown\t2\t76\nBrookwood\t5\t35\nAnsley Park\t5\t49\nNiskey Lake\t6\t3\nMellwood\t12\t2\nWhitewater Creek\t11\t4\nJoyland\t3\t31\nRidgecrest Forest\t10\t6\nWildwood (NPU-C)\t10\t37\nWestwood Terrace\t6\t28\nBoulder Park\t3\t4\nCuster/McDonough/Guice\t5\t78\nBlandtown\t3\t73\nBeecher Hills\t8\t23\nSouth River Gardens\t12\t134\nDixie Hills\t10\t89\nBrookwood\t6\t40\nAnsley Park\t6\t49\nBankhead\t1\t136\nWhitewater Creek\t12\t2\nNiskey Lake\t7\t3\nJoyland\t4\t26\nWildwood (NPU-C)\t11\t32\nRidgecrest Forest\t11\t8\nWestwood Terrace\t7\t39\nKirkwood\t1\t235\nBoulder Park\t4\t6\nBeecher Hills\t9\t22\nCuster/McDonough/Guice\t6\t87\nBlandtown\t4\t58\nBolton\t1\t51\nDixie Hills\t11\t85\nBrookwood\t7\t36\nAnsley Park\t7\t56\nBankhead\t2\t102\nNiskey Lake\t8\t7\nJoyland\t5\t45\nWildwood (NPU-C)\t12\t43\nRidgecrest Forest\t12\t8\nWestwood Terrace\t8\t34\nKirkwood\t2\t205\nBoulder Park\t5\t5\nCuster/McDonough/Guice\t7\t92\nBlandtown\t5\t85\nDixie Hills\t12\t93\nBolton\t2\t39\nBrookwood\t8\t47\nAnsley Park\t8\t33\nKirkwood\t3\t176\nWestwood Terrace\t9\t22\nAnsley Park\t9\t28\nBrookwood\t9\t27\nHanover West\t1\t4\nBolton\t3\t60\nJoyland\t6\t38\nCuster/McDonough/Guice\t8\t80\nBlandtown\t6\t88\nBoulder Park\t6\t3\nNiskey Lake\t9\t4\nBankhead\t3\t136\nKirkwood\t4\t233\nSweet Auburn\t10\t149\nHanover West\t2\t2\nBolton\t4\t56\nJoyland\t7\t44\nCuster/McDonough/Guice\t9\t65\nBlandtown\t7\t84\nBoulder Park\t7\t3\nBankhead\t4\t183\nOld Fairburn Village\t10\t1\nKirkwood\t5\t221\nBolton\t5\t63\nSweet Auburn\t11\t159\nOrmewood Park\t1\t94\nHanover West\t3\t2\nBlandtown\t8\t81\nSummerhill\t1\t121\nJoyland\t8\t29\nBankhead\t5\t151\nBoulder Park\t8\t5\nKirkwood\t6\t228\nOld Fairburn Village\t11\t1\nOrmewood Park\t2\t87\nJoyland\t9\t33\nSummerhill\t2\t101\nBankhead/Bolton\t1\t22\nPerkerson\t1\t190\nChalet Woods\t10\t5\nBolton\t6\t73\nSweet Auburn\t12\t180\nHanover West\t4\t2\nBlandtown\t9\t62\nBen Hill Forest\t10\t3\nBankhead\t6\t169\nBoulder Park\t9\t4\nOrmewood Park\t3\t102\nHanover West\t5\t5\nBolton\t7\t60\nLeila Valley\t1\t26\nChalet Woods\t11\t4\nKirkwood\t7\t270\nPerkerson\t2\t150\nArden/Habersham\t1\t2\nNiskey Cove\t1\t4\nBankhead\t7\t147\nBankhead/Bolton\t2\t10\nSummerhill\t3\t96\nOrmewood Park\t4\t124\nKirkwood\t8\t211\nArden/Habersham\t2\t3\nBankhead/Bolton\t3\t20\nSummerhill\t4\t172\nHanover West\t6\t3\nBolton\t8\t63\nLeila Valley\t2\t29\nBuckhead Village\t1\t89\nChalet Woods\t12\t8\nGrove Park\t1\t313\nPerkerson\t3\t174\nBankhead\t8\t144\nBen Hill Forest\t12\t5\nGreenbriar\t10\t275\nOrmewood Park\t5\t151\nArden/Habersham\t3\t4\nKirkwood\t9\t207\nBankhead/Bolton\t4\t23\nNiskey Cove\t3\t3\nBakers Ferry\t10\t5\nSummerhill\t5\t182\nBolton\t9\t49\nLeila Valley\t3\t33\nHanover West\t7\t2\nPerkerson\t4\t192\nGrove Park\t2\t233\nBuckhead Village\t2\t48\nBankhead\t9\t137\nGreenbriar\t11\t268\nOrmewood Park\t6\t117\nArden/Habersham\t4\t5\nThe Villages at Castleberry H\t10\t86\nCabbagetown\t1\t50\nBankhead/Bolton\t5\t23\nNiskey Cove\t4\t2\nCampbellton Road\t1\t231\nSummerhill\t6\t200\nLeila Valley\t4\t45\nHanover West\t8\t4\nGrove Park\t3\t242\nPerkerson\t5\t173\nBuckhead Village\t3\t70\nFairburn Mays\t10\t79\nGreenbriar\t12\t321\nSummerhill\t7\t139\nWest Lake\t10\t35\nFairburn Mays\t11\t84\nCampbellton Road\t2\t146\nWisteria Gardens\t1\t20\nBakers Ferry\t12\t3\nCabbagetown\t2\t32\nThe Villages at Castleberry H\t11\t83\nPerkerson\t6\t209\nOrmewood Park\t7\t131\nLake Estates\t1\t3\nNiskey Cove\t5\t2\nBankhead/Bolton\t6\t23\nBuckhead Village\t4\t64\nArden/Habersham\t5\t2\nGrove Park\t4\t376\nHanover West\t9\t1\nLeila Valley\t5\t29\nSummerhill\t8\t147\nFairburn Mays\t12\t112\nCampbellton Road\t3\t223\nWest Lake\t11\t38\nCastleberry Hill\t10\t175\nWisteria Gardens\t2\t9\nCabbagetown\t3\t31\nThe Villages at Castleberry H\t12\t70\nPerkerson\t7\t180\nOrmewood Park\t8\t98\nLake Estates\t2\t2\nNiskey Cove\t6\t2\nBankhead/Bolton\t7\t31\nBuckhead Village\t5\t60\nArden/Habersham\t6\t4\nGrove Park\t5\t360\nLeila Valley\t6\t51\nWest Lake\t12\t48\nCampbellton Road\t4\t209\nSummerhill\t9\t168\nBoulevard Heights\t1\t27\nMagnum Manor\t1\t9\nPoncey-Highland\t10\t148\nWisteria Gardens\t3\t16\nCastleberry Hill\t11\t210\nPerkerson\t8\t169\nCabbagetown\t4\t28\nBuckhead Forest\t1\t104\nOrmewood Park\t9\t77\nLake Estates\t3\t3\nBankhead/Bolton\t8\t31\nNiskey Cove\t7\t3\nArden/Habersham\t7\t3\nGrove Park\t6\t377\nBrookwood Hills\t1\t33\nBuckhead Village\t6\t85\nLeila Valley\t7\t41\nWesthaven\t10\t15\nCampbellton Road\t5\t227\nMagnum Manor\t2\t6\nBoulevard Heights\t2\t17\nPoncey-Highland\t11\t148\nCastleberry Hill\t12\t194\nWisteria Gardens\t4\t13\nPerkerson\t9\t183\nCabbagetown\t5\t31\nBuckhead Forest\t2\t80\nBankhead/Bolton\t9\t22\nNiskey Cove\t8\t3\nArden/Habersham\t8\t6\nGrove Park\t7\t309\nUnderwood Hills\t10\t72\nBuckhead Village\t7\t73\nBrookwood Hills\t2\t23\nLeila Valley\t8\t38\nWisteria Gardens\t5\t18\nPoncey-Highland\t12\t113\nBoulevard Heights\t3\t30\nMagnum Manor\t3\t3\nWesthaven\t11\t22\nCampbellton Road\t6\t273\nCabbagetown\t6\t34\nBuckhead Forest\t3\t112\nNiskey Cove\t9\t4\nLake Estates\t5\t2\nLeila Valley\t9\t27\nBrookwood Hills\t3\t25\nCollier Hills\t10\t7\nUnderwood Hills\t11\t81\nBuckhead Village\t8\t76\nGrove Park\t8\t346\nArden/Habersham\t9\t2\nWisteria Gardens\t6\t17\nMagnum Manor\t4\t7\nBoulevard Heights\t4\t17\nWesthaven\t12\t34\nCampbellton Road\t7\t264\nElmco Estates\t10\t14\nCabbagetown\t7\t40\nBuckhead Forest\t4\t107\nLake Estates\t6\t4\nUnderwood Hills\t12\t79\nBuckhead Village\t9\t67\nBrookwood Hills\t4\t21\nCollier Hills\t11\t4\nGrove Park\t9\t291\nWisteria Gardens\t7\t15\nAtlantic Station\t10\t148\nCampbellton Road\t8\t229\nBoulevard Heights\t5\t28\nMagnum Manor\t5\t3\nElmco Estates\t11\t16\nCabbagetown\t8\t37\nBuckhead Forest\t5\t100\nLenox\t1\t382\nLake Estates\t7\t4\nBrookwood Hills\t5\t40\nBrandon\t1\t19\nCollier Hills\t12\t3\nAtlantic Station\t11\t154\nWisteria Gardens\t8\t10\nCampbellton Road\t9\t222\nMagnum Manor\t6\t10\nBoulevard Heights\t6\t24\nArlington Estates\t10\t18\nElmco Estates\t12\t9\nChosewood Park\t10\t81\nRiverside\t10\t38\nCabbagetown\t9\t34\nBuckhead Forest\t6\t126\nLenox\t2\t302\nLake Estates\t8\t2\nHarris Chiles\t1\t59\nBrookwood Hills\t6\t39\nBrandon\t2\t11\nBrookwood Hills\t7\t27\nBuckhead Forest\t7\t114\nChosewood Park\t11\t82\nRiverside\t11\t38\nArlington Estates\t11\t25\nMagnum Manor\t7\t6\nWisteria Gardens\t9\t15\nLenox\t3\t346\nBrandon\t3\t19\nHarris Chiles\t2\t27\nBoulevard Heights\t7\t27\nLake Estates\t9\t2\nAtlantic Station\t12\t152\nBuckhead Forest\t8\t93\nBrookwood Hills\t8\t23\nChosewood Park\t12\t61\nRiverside\t12\t37\nArlington Estates\t12\t17\nMagnum Manor\t8\t6\nPeachtree Park\t1\t39\nPleasant Hill\t10\t2\nLenox\t4\t311\nBrandon\t4\t15\nHarris Chiles\t3\t55\nAudobon Forest\t10\t12\nBoulevard Heights\t8\t24\nThomasville Heights\t10\t124\nEast Lake\t1\t96\nBrookwood Hills\t9\t20\nBuckhead Forest\t9\t83\nPeachtree Park\t2\t34\nMagnum Manor\t9\t7\nLenox\t5\t334\nPleasant Hill\t11\t2\nLakewood Heights\t1\t186\nBrandon\t5\t25\nHarris Chiles\t4\t59\nAudobon Forest\t11\t11\nBoulevard Heights\t9\t20\nEast Lake\t2\t77\nAshview Heights\t1\t117\nThomasville Heights\t11\t152\nBrandon\t6\t33\nHarris Chiles\t5\t56\nWyngate\t10\t8\nPeachtree Park\t3\t37\n\n\u003cfont color\u003dred\u003eResults are limited by 1000.\u003c/font\u003e"
+      },
+      "dateCreated": "Jul 19, 2015 1:21:06 AM",
+      "dateStarted": "Jul 19, 2015 2:27:23 PM",
+      "dateFinished": "Jul 19, 2015 2:27:26 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nhtml \u003d \"\"\"\n\u003clink rel\u003d\u0027stylesheet\u0027 href\u003d\u0027http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css\u0027/\u003e                        \n\u003cdiv id\u003d\u0027map\u0027 style\u003d\"height:100%\"\u003e\u003c/div\u003e\n\u003cscript src\u003d\u0027http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js\u0027\u003e\u003c/script\u003e                                 \n\u003cscript\u003e\n//hack to increase vertical mapsize\nfor (i \u003d 0; i \u003c 45; i++) $(\u0027#map\u0027).append(\u0027\u003cbr\u003e\u0027);\n//center map on Atlanta\nvar map \u003d L.map(\u0027map\u0027).setView(new L.LatLng(33.7550, -84.3900), 12);\nmap.addLayer(new L.TileLayer(\u0027http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\u0027));\n$.get(\u0027assets/images/atlanta.geojson\u0027, function(data){\n  debugger;\n  L.geoJson(JSON.parse(data)).addTo(map)\n});\n\u003c/script\u003e\n\"\"\"\n\nprint \u0027%html \u0027 + html",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "tableHide": false,
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1437331114315_1941986654",
+      "id": "20150719-143834_956565139",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\n\u003clink rel\u003d\u0027stylesheet\u0027 href\u003d\u0027http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css\u0027/\u003e                        \n\u003cdiv id\u003d\u0027map\u0027 style\u003d\"height:100%\"\u003e\u003c/div\u003e\n\u003cscript src\u003d\u0027http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js\u0027\u003e\u003c/script\u003e                                 \n\u003cscript\u003e\n//hack to increase vertical mapsize\nfor (i \u003d 0; i \u003c 45; i++) $(\u0027#map\u0027).append(\u0027\u003cbr\u003e\u0027);\n//center map on Atlanta\nvar map \u003d L.map(\u0027map\u0027).setView(new L.LatLng(33.7550, -84.3900), 12);\nmap.addLayer(new L.TileLayer(\u0027http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\u0027));\n$.get(\u0027assets/images/atlanta.geojson\u0027, function(data){\n  debugger;\n  L.geoJson(JSON.parse(data)).addTo(map)\n});\n\u003c/script\u003e\n\n"
+      },
+      "dateCreated": "Jul 19, 2015 2:38:34 PM",
+      "dateStarted": "Jul 19, 2015 10:15:21 PM",
+      "dateFinished": "Jul 19, 2015 10:15:21 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1437348317209_504039413",
+      "id": "20150719-192517_129641524",
+      "dateCreated": "Jul 19, 2015 7:25:17 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# Requires numpy from pip\nfrom pyspark.mllib.tree import RandomForest, RandomForestModel\nfrom pyspark.mllib.util import MLUtils\nfrom pyspark.mllib.regression import LabeledPoint\n\ntraining \u003d sqlContext.sql(\"\"\"\n select\n   neighborhood,\n   regexp_extract(trim(split(rpt_date, \"\\/\")[0]), \"0*([1-9][0-9]*|0)\", 1) as month,\n   count(*) as count\n from crimes\n group by neighborhood, regexp_extract(trim(split(rpt_date, \"\\/\")[0]), \"0*([1-9][0-9]*|0)\", 1)\n\"\"\")\nprint training.count()",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1437329238607_-1462319755",
+      "id": "20150719-140718_1757412657",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "2835\n"
+      },
+      "dateCreated": "Jul 19, 2015 2:07:18 PM",
+      "dateStarted": "Jul 19, 2015 2:48:17 PM",
+      "dateFinished": "Jul 19, 2015 2:48:20 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "id": "2AVBP6UHB",
+  "angularObjects": {
+    "2AUETGG7J": [],
+    "2AW1GTKDE": [],
+    "2AU93RPS6": [],
+    "2AVTDXVSD": [],
+    "2ATMAGAD6": [],
+    "2AVHJE358": [],
+    "2AU5KU25U": [],
+    "2AU6RKMQB": [],
+    "2AVH74EH2": []
+  },
+  "config": {},
+  "info": {}
+}

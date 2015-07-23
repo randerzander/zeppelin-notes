@@ -1,0 +1,169 @@
+{
+  "paragraphs": [
+    {
+      "text": "%pyspark\nwords \u003d sc.textFile(\u0027file:///var/log/ambari-agent/ambari-agent.log\u0027) \\\n .flatMap(lambda x: x.lower().split(\u0027 \u0027)) \\\n .filter(lambda x: x.isalpha()).map(lambda x: (x, 1)) \\\n .reduceByKey(lambda a,b: a+b)\n \nsqlContext.registerDataFrameAsTable(sqlContext.createDataFrame(words, [\u0027word\u0027, \u0027count\u0027]), \u0027words\u0027)",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1437246218333_1807060657",
+      "id": "20150718-150338_952627494",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": ""
+      },
+      "dateCreated": "Jul 18, 2015 3:03:38 PM",
+      "dateStarted": "Jul 18, 2015 3:50:39 PM",
+      "dateFinished": "Jul 18, 2015 3:50:40 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql select word, max(count) from words group by word",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "multiBarChart",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "word",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "_c1",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "word",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "_c1",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1437248530888_-1900488658",
+      "id": "20150718-154210_1705070758",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "word\t_c1\njson\t2876\nport\t2\nnodemanager\t8\nduring\t2\nconfigurations\t80\nfound\t2\nreschedule\t18\nare\t3580\ndefinition\t2\nhcat\t4\nhive\t3548\nadding\t14216\ncommunication\t2\nwith\t124\nerror\t4\nalerts\t2\nstarting\t2\nnot\t578\nheartbeat\t3602\nuuid\t38\nmissed\t25078\ntime\t25078\nresourcemanager\t8\nread\t2\nregistrationcommand\t2\nunscheduled\t18\nto\t19992\nwas\t25084\nvalue\t3578\nfalse\t2\naliases\t3578\nexist\t576\nconnecting\t16\nencountered\t2\nrun\t50156\nha\t3578\nno\t3583\noccured\t2\nstacks\t1\nat\t7\nregistration\t12\npresent\t3578\nusing\t2\nsuccessful\t4\nresetting\t4\nyarn\t2371\nsuch\t1\nobject\t2\nauthentication\t4\nzookeeper\t1183\nbe\t2\nlost\t2\nof\t39374\nexecuting\t80\nfrom\t2880\nservice\t14216\nok\t4\nbut\t3578\non\t6\npublic\t2\ncomponentsmapped\t3598\nid\t84\nunable\t5754\nor\t579\nscheduling\t38\nand\t2\nbeing\t4\nconnection\t6\nby\t25078\ntez\t590\noff\t4\nin\t10\nreceived\t3604\nis\t4158\ndata\t6\nping\t2\npool\t2\nlistener\t2\ncore\t2\nhbase\t1778\nunrecognized\t4\ncommand\t80\ndoes\t576\nempty\t576\nhostname\t2\ndev\t14294\nbuilding\t3598\ncommands\t2\nwarning\t31537\nthere\t3580\ncleanup\t6\nagent\t2\nhistoryserver\t6\nthreads\t4\ncreating\t1\ncached\t80\njmx\t2868\nfile\t578\nuntil\t2\ninfo\t23438\nnameservice\t3578\nhdfs\t2372\ncommandsinprogress\t3598\nnamenode\t8\nmaximum\t2\nfor\t18034\nconnect\t4\nresponse\t3606\nnumdeadregionservers\t8\nbeeline\t586\ndatanode\t8\nturned\t4\npid\t576\nssl\t12\npig\t593\nstarted\t8\nserver\t8\nexecute\t2876\ntimestamp\t3598\nthe\t14228\ncluster\t14376\nambari\t4\njob\t25078\nrepeat\t2\ncurrently\t2\nfailed\t2\nupdating\t80\nversions\t1\nawk\t586\nregistering\t4\nlocalhost\t6\nwill\t2\nscheduled\t2\nrole\t160\nupdate\t2\nfind\t8\nfinished\t2\ndue\t2\nget\t2868\ndefinitions\t2\nnull\t4\nthread\t4\nalert\t2\nnext\t25078\n"
+      },
+      "dateCreated": "Jul 18, 2015 3:42:10 PM",
+      "dateStarted": "Jul 18, 2015 3:50:44 PM",
+      "dateFinished": "Jul 18, 2015 3:50:45 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql\nselect word, length(word) as length, count from words\n--where count \u003e 20\ngroup by word, count\norder by count desc",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "pieChart",
+          "height": 300.0,
+          "optionOpen": true,
+          "keys": [
+            {
+              "name": "length",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "count",
+              "index": 2.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "length",
+              "index": 1.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "count",
+              "index": 2.0,
+              "aggr": "sum"
+            }
+          }
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1437248720058_-886566392",
+      "id": "20150718-154520_1055598558",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "word\tlength\tcount\nrun\t3\t50156\nof\t2\t39374\nwarning\t7\t31537\nwas\t3\t25084\nmissed\t6\t25078\ntime\t4\t25078\nnext\t4\t25078\nby\t2\t25078\njob\t3\t25078\ninfo\t4\t23438\nto\t2\t19992\nfor\t3\t18034\ncluster\t7\t14376\ndev\t3\t14294\nthe\t3\t14228\nservice\t7\t14216\nadding\t6\t14216\nunable\t6\t5754\nis\t2\t4158\nresponse\t8\t3606\nreceived\t8\t3604\nheartbeat\t9\t3602\ncomponentsmapped\t16\t3598\ntimestamp\t9\t3598\nbuilding\t8\t3598\ncommandsinprogress\t18\t3598\nno\t2\t3583\nare\t3\t3580\nthere\t5\t3580\nbut\t3\t3578\npresent\t7\t3578\nha\t2\t3578\naliases\t7\t3578\nnameservice\t11\t3578\nvalue\t5\t3578\nhive\t4\t3548\nfrom\t4\t2880\njson\t4\t2876\nexecute\t7\t2876\njmx\t3\t2868\nget\t3\t2868\nhdfs\t4\t2372\nyarn\t4\t2371\nhbase\t5\t1778\nzookeeper\t9\t1183\npig\t3\t593\ntez\t3\t590\nawk\t3\t586\nbeeline\t7\t586\nor\t2\t579\nnot\t3\t578\nfile\t4\t578\nempty\t5\t576\ndoes\t4\t576\npid\t3\t576\nexist\t5\t576\nrole\t4\t160\nwith\t4\t124\nid\t2\t84\nexecuting\t9\t80\ncommand\t7\t80\ncached\t6\t80\nupdating\t8\t80\nconfigurations\t14\t80\nuuid\t4\t38\nscheduling\t10\t38\nunscheduled\t11\t18\nreschedule\t10\t18\nconnecting\t10\t16\nregistration\t12\t12\nssl\t3\t12\nin\t2\t10\nnodemanager\t11\t8\nfind\t4\t8\ndatanode\t8\t8\nnumdeadregionservers\t20\t8\nresourcemanager\t15\t8\nstarted\t7\t8\nnamenode\t8\t8\nserver\t6\t8\nat\t2\t7\ncleanup\t7\t6\nhistoryserver\t13\t6\nlocalhost\t9\t6\non\t2\t6\nconnection\t10\t6\ndata\t4\t6\nthread\t6\t4\nconnect\t7\t4\nturned\t6\t4\nregistering\t11\t4\noff\t3\t4\nresetting\t9\t4\nauthentication\t14\t4\nnull\t4\t4\nambari\t6\t4\nok\t2\t4\nunrecognized\t12\t4\nsuccessful\t10\t4\nerror\t5\t4\nhcat\t4\t4\nbeing\t5\t4\nthreads\t7\t4\nfinished\t8\t2\nand\t3\t2\ndefinition\t10\t2\nping\t4\t2\nencountered\t11\t2\ncommunication\t13\t2\nfailed\t6\t2\nregistrationcommand\t19\t2\nalerts\t6\t2\nagent\t5\t2\nfalse\t5\t2\nscheduled\t9\t2\nobject\t6\t2\nrepeat\t6\t2\nupdate\t6\t2\nwill\t4\t2\nstarting\t8\t2\nmaximum\t7\t2\nalert\t5\t2\ncommands\t8\t2\ncore\t4\t2\nuntil\t5\t2\npublic\t6\t2\nduring\t6\t2\nread\t4\t2\nport\t4\t2\nusing\t5\t2\nfound\t5\t2\ndue\t3\t2\ncurrently\t9\t2\ndefinitions\t11\t2\nhostname\t8\t2\npool\t4\t2\noccured\t7\t2\nlost\t4\t2\nbe\t2\t2\nlistener\t8\t2\nsuch\t4\t1\nversions\t8\t1\ncreating\t8\t1\nstacks\t6\t1\n"
+      },
+      "dateCreated": "Jul 18, 2015 3:45:20 PM",
+      "dateStarted": "Jul 18, 2015 4:24:14 PM",
+      "dateFinished": "Jul 18, 2015 4:24:15 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1437260111678_-712359240",
+      "id": "20150718-185511_1376850443",
+      "dateCreated": "Jul 18, 2015 6:55:11 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "id": "2AT25ZJR3",
+  "angularObjects": {
+    "2AUETGG7J": [],
+    "2AW1GTKDE": [],
+    "2AU93RPS6": [],
+    "2AVTDXVSD": [],
+    "2ATMAGAD6": [],
+    "2AVHJE358": [],
+    "2AU5KU25U": [],
+    "2AU6RKMQB": [],
+    "2AVH74EH2": []
+  },
+  "config": {},
+  "info": {}
+}
