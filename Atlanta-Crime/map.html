@@ -1,0 +1,34 @@
+<link rel='stylesheet' href='http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css'/>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js'></script>
+<script src='https://rawgit.com/Alex7Kom/golden-colors/master/golden-colors.js'></script>
+<div id='map'></div>
+
+<style>
+  .legend {line-height: 18px;color: #555;}
+  .legend i {width: 18px;height: 18px;float: left;margin-right: 8px;opacity: 1;}
+  #map svg {width : auto; height : auto;}
+</style>
+
+<script>
+  //hack to increase vertical mapsize
+  for (i = 0; i < 35; i++) $('#map').append('<br>');
+
+  //center map on Atlanta
+  var map = L.map('map');
+  map.addLayer(new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'));
+
+  function addCircle(x, y, radius, desc, c, fillOpacity){
+    L.circle([x, y], radius, {color: c.toString(), fillColor: c.toString(), fillOpacity: fillOpacity})
+      .bindPopup(desc).addTo(map);
+  }
+
+  var series = {};
+  var legend = L.control({position: 'bottomright'});
+  legend.onAdd = function (map) {
+    var div = L.DomUtil.create('div', 'info legend');
+    $.each(series, function(k, v){
+      div.innerHTML += '<i style="background:' + v.toString() + '"></i><b>' + k + '</b><br>';
+    });
+    return div;
+  }
+</script>
